@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutComponent = ({initialSelect}) => {
     return (
-       <div className='container'>
+       <div className='container mt-5' style={{height: '100vh'}}>
            <div className='row text-center'>
                <h1>Gen 1 Pokedex app</h1>
            </div>

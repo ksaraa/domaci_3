@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {GrNext, GrPrevious} from 'react-icons/gr';
 import PokemonDataDexEnty from './PokemonDataDexEntry';
+
 
 
 const PokemonData = ({ id, setSelectedPokemon }) => {
@@ -38,10 +40,10 @@ const PokemonData = ({ id, setSelectedPokemon }) => {
             {pokemon ? (
                 <div className="card">
                     <div className="container-fluid">
-                        <div className="row border-bottom">
-                            <div className='col-1 btn btn-info' onClick={() => handleClick(prevId)} > {`<#${prevId}`}</div>
-                            <div className='col-10 text-center'>#{id} - {pokemon.name.toUpperCase()}</div>
-                            <div className='col-1 btn btn-info' onClick={() => handleClick(nextId)}>{`#${nextId}>`}</div>
+                        <div className="row align-content-center mt-1">
+                            <div className='col-1 btn btn-info' onClick={() => handleClick(prevId)} > <GrPrevious/>{`#${prevId}`}</div>
+                            <div className='col-10 text-center strong h4'>#{id} - {pokemon.name.toUpperCase()}</div>
+                            <div className='col-1 btn btn-info' onClick={() => handleClick(nextId)}>{`#${nextId}`}<GrNext /></div>
                         </div>
                         <div className="row border-bottom">
                             <div className="col-6 p-1"><img className='w-100' src={pokemon.sprites.front_default} alt={pokemon.name} /></div>

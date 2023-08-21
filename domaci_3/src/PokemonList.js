@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {GrUp} from 'react-icons/gr';
 import PokemonCard from './PokemonCard';
 
 const PokemonList = ({ setSelectedPokemon }) => {
@@ -41,7 +42,7 @@ const PokemonList = ({ setSelectedPokemon }) => {
                 <p>Loading...</p>
             )}
         </div>
-        <a href="#top" className='btn btn-info' style={{position: 'fixed', bottom:'0', right: '0'}}>↑</a>
+        <a href="#top" className='btn btn-info' style={{position: 'fixed', bottom:'0', right: '0'}}><GrUp/></a>
         </>
     );
 
