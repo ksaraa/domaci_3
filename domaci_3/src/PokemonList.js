@@ -12,7 +12,6 @@ const PokemonList = ({ setSelectedPokemon }) => {
         try {
             const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
             const jsonData = await response.json();
-            console.log(jsonData);
             setData(jsonData);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -25,7 +24,9 @@ const PokemonList = ({ setSelectedPokemon }) => {
     }
 
     return (
-        <div className='row justify-content-between p-5' >
+        <>
+        <div className='row justify-content-between' >
+            <div id="top"></div>
             {data && data.results ? (
                 data.results.map((pokemon) => {
                     const name = pokemon.name;
@@ -40,6 +41,8 @@ const PokemonList = ({ setSelectedPokemon }) => {
                 <p>Loading...</p>
             )}
         </div>
+        <a href="#top" className='btn btn-info' style={{position: 'fixed', bottom:'0', right: '0'}}>↑</a>
+        </>
     );
 
 }

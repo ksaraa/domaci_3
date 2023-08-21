@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
+
 import PokemonList from './PokemonList';
 import PokemonData from './PokemonData';
 
 const HomeComponent = () => {
-    const [selectedPokemon, setSelectedPokemon] = useState(-1)
+    const [selectedPokemon, setSelectedPokemon] = useState(-1);
 
     useEffect(() => {
-        console.log("Selected pokemon: "+selectedPokemon);
+        console.log(selectedPokemon);
     }, [selectedPokemon])
 
     return (
-        <div className='container'>
+        <div className='container my-5'>
             {!selectedPokemon || selectedPokemon == -1 ?(
                 <PokemonList setSelectedPokemon={setSelectedPokemon}></PokemonList>
             ):(

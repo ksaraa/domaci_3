@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PokemonDataDexEnty from './PokemonDataDexEntry';
 
 
 const PokemonData = ({ id, setSelectedPokemon }) => {
@@ -15,7 +16,7 @@ const PokemonData = ({ id, setSelectedPokemon }) => {
             console.log("Fetching data for: " + id)
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
             const jsonData = await response.json();
-            console.log(jsonData);
+
             setPokemon(jsonData);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -28,27 +29,35 @@ const PokemonData = ({ id, setSelectedPokemon }) => {
         setSelectedPokemon(id);
     }
 
-
     return (
-        <div class="row">
+        <>
+        <div className='row mb-1'>
+            <button className='btn btn-info' onClick={()=> handleClick(-1)}>Pokemon list</button>
+        </div>
+        <div className="row">
             {pokemon ? (
-                <div class="card">
-                    <div class="container-fluid">
-                        <div class="row border-bottom">
-                            <div className='col-1' onClick={() => handleClick(prevId)} > {`<#${prevId}`}</div>
-                            <div class='col-10 text-center'>#{id} - {pokemon.name.toUpperCase()}</div>
-                            <div className='col-1' onClick={() => handleClick(nextId)}>{`#${nextId}>`}</div>
+                <div className="card">
+                    <div className="container-fluid">
+                        <div className="row border-bottom">
+                            <div className='col-1 btn btn-info' onClick={() => handleClick(prevId)} > {`<#${prevId}`}</div>
+                            <div className='col-10 text-center'>#{id} - {pokemon.name.toUpperCase()}</div>
+                            <div className='col-1 btn btn-info' onClick={() => handleClick(nextId)}>{`#${nextId}>`}</div>
                         </div>
-                        <div class="row">
-                            <div class="col-6 p-1"><img class='w-100' src={pokemon.sprites.front_default} alt={pokemon.name} /></div>
-                            <div class="col-6 p-1"><img class='w-100' src={pokemon.sprites.back_default} alt={pokemon.name} /></div>
+                        <div className="row border-bottom">
+                            <div className="col-6 p-1"><img className='w-100' src={pokemon.sprites.front_default} alt={pokemon.name} /></div>
+                            <div className="col-6 p-1"><img className='w-100' src={pokemon.sprites.back_default} alt={pokemon.name} /></div>
+                        </div>
+                        <div className="row">
+                            <PokemonDataDexEnty id={id}></PokemonDataDexEnty>
                         </div>
                     </div>
                 </div>
+            
             ) : (
                 <p>Loading...</p>
             )}
         </div>
+        </>
     );
 }
 
