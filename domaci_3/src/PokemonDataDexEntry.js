@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-const PokemonDataDexEnty = ({ id }) => {
+const PokemonDataDexEnty = ({ id, setGenera }) => {
     const [dexEnties, setDexEnties] = useState(null);
+    const [types, setTypes]  = useState(null);
+    
 
     useEffect(() => {
         fetchData();
@@ -9,7 +11,6 @@ const PokemonDataDexEnty = ({ id }) => {
 
     const fetchData = async () => {
         try {
-            console.log("Fetching data for: " + id)
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
             const jsonData = await response.json();
 
@@ -22,6 +23,12 @@ const PokemonDataDexEnty = ({ id }) => {
     const normalizeData = (jsonData) => {
         const uniqueDexEnties = new Set();
 
+        jsonData.genera.forEach(entry => {
+            if(entry.language.name == 'en') {
+                setGenera(entry.genus);
+            }
+        });
+
         jsonData.flavor_text_entries.forEach(entry => {
             if (entry.language.name == 'en') {
                 uniqueDexEnties.add(entry.flavor_text);
@@ -32,7 +39,7 @@ const PokemonDataDexEnty = ({ id }) => {
     }
 
     return (
-        <div className="container mt-2">
+        <div className="container mt-1">
             <div className="row">
                 {dexEnties ? (
                     dexEnties.map((dexEntry) => {
